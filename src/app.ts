@@ -1,11 +1,10 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application, Router } from 'express';
+import { PostRoute } from './routes/post.route';
 
 export const app = (): Application => {
   const app = express();
 
-  app.get('/', (request: Request, response: Response) => {
-    response.status(200).json({ message: 'hello' });
-  });
+  app.use('/posts', PostRoute());
 
   return app;
 };

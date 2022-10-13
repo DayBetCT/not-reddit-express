@@ -1,16 +1,22 @@
-import { PostController } from 'controllers/post.controller';
-import { BaseRoute } from './base.route';
+import { indexPost } from '../controllers/post.controller';
+import { NextFunction, Request, Response, Router } from 'express';
 
-export class PostRouter extends BaseRoute {
-  private endpoint = '/posts';
-  private postController = new PostController();
-
-  constructor() {
-    super();
-    this.router.get(this.endpoint, this.postController.index);
-    this.router.get(`${this.endpoint}/:postId`, this.postController.show);
-    this.router.post(this.endpoint, this.postController.store);
-    this.router.patch(`${this.endpoint}/:postId`, this.postController.update);
-    this.router.delete(`${this.endpoint}/:postId`, this.postController.destroy);
-  }
-}
+export const PostRoute = () => {
+  return [
+    Router().get('/', (request: Request, response: Response) => {
+      indexPost(request, response);
+    }),
+    Router().get('/:postId', (request: Request, response: Response) => {
+      response.status(200).json({ message: 'post show' });
+    }),
+    Router().post('/', (request: Request, response: Response) => {
+      response.status(200).json({ message: 'post store' });
+    }),
+    Router().put('/:postId', (request: Request, response: Response) => {
+      response.status(200).json({ message: 'post update' });
+    }),
+    Router().delete('/:postId', (request: Request, response: Response) => {
+      response.status(200).json({ message: 'post destroy' });
+    }),
+  ];
+};

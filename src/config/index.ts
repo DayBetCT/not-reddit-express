@@ -1,5 +1,5 @@
-import { config } from 'dotenv';
+const dotenv = require('dotenv');
 
-config({ path: '.env.dev' });
+dotenv.config({ path: '.env.dev' });
 
 export const { PORT } = process.env;

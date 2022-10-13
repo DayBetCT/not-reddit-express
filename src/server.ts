@@ -1,7 +1,7 @@
 import { PORT } from './config';
 import { app } from './app';
 
-const start = (port: string) => {
+const start = (port: string | number) => {
   try {
     app().listen(port, () => {
       console.log(`Server listening to ${port}`);
