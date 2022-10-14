@@ -1,5 +1,11 @@
-import { indexPost } from '../controllers/post.controller';
-import { NextFunction, Request, Response, Router } from 'express';
+import {
+  destroyPost,
+  indexPost,
+  showPost,
+  storePost,
+  updatePost,
+} from '../controllers/post.controller';
+import { Request, Response, Router } from 'express';
 
 export const PostRoute = () => {
   return [
@@ -7,16 +13,16 @@ export const PostRoute = () => {
       indexPost(request, response);
     }),
     Router().get('/:postId', (request: Request, response: Response) => {
-      response.status(200).json({ message: 'post show' });
+      showPost(request, response);
     }),
     Router().post('/', (request: Request, response: Response) => {
-      response.status(200).json({ message: 'post store' });
+      storePost(request, response);
     }),
     Router().put('/:postId', (request: Request, response: Response) => {
-      response.status(200).json({ message: 'post update' });
+      updatePost(request, response);
     }),
     Router().delete('/:postId', (request: Request, response: Response) => {
-      response.status(200).json({ message: 'post destroy' });
+      destroyPost(request, response);
     }),
   ];
 };
