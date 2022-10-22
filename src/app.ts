@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
-import { PostRoute } from './routes/post.route';
+import { PostRoute } from '@routes';
 import { Pool } from 'pg';
-import { env } from './config';
+import { env } from '@config';
 
 export const pool = new Pool({
   user: env.DB_USER,
