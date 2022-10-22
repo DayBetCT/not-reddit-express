@@ -1,6 +1,6 @@
 import { env } from './config';
 import { app } from './app';
-import { sequelize } from './database';
+import { sequelize } from './models';
 
 const start = async (port: string | number) => {
   try {

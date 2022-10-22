@@ -1,11 +1,20 @@
-import { Sequelize } from 'sequelize';
+import sequelizeConfig from '../config/config';
+import { Dialect, Sequelize } from 'sequelize';
 
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../../config.js')[env];
+type ObjectKey = keyof typeof sequelizeConfig;
+
+const env = (process.env.NODE_ENV || 'development') as ObjectKey;
+const config = sequelizeConfig[env];
 
 const sequelize = config.url
-  ? new Sequelize(config.url, config)
-  : new Sequelize(config.database, config.username, config.password, config);
+  ? new Sequelize(config.url, {
+      host: config.host,
+      dialect: config.dialect as Dialect,
+    })
+  : new Sequelize(config.database, config.username, config.password ?? '', {
+      host: config.host,
+      dialect: config.dialect as Dialect,
+    });
 
 export { Sequelize, sequelize };
 
