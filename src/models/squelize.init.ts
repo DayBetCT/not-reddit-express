@@ -1,20 +1,30 @@
 import { sequelizeConfig } from '@config/sequelizeConfig';
-import { Dialect, Sequelize } from 'sequelize';
+import { Dialect, Options, Sequelize } from 'sequelize';
 
 type EligibleEnv = keyof typeof sequelizeConfig;
 
 const env = (process.env.NODE_ENV || 'development') as EligibleEnv;
 const config = sequelizeConfig[env];
+const options: Options = {
+  host: config.host,
+  dialect: config.dialect as Dialect,
+  define: {
+    timestamps: true,
+    paranoid: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    deletedAt: 'deleted_at',
+  },
+};
 
 const sequelize = config.url
-  ? new Sequelize(config.url, {
-      host: config.host,
-      dialect: config.dialect as Dialect,
-    })
-  : new Sequelize(config.database, config.username, config.password ?? '', {
-      host: config.host,
-      dialect: config.dialect as Dialect,
-    });
+  ? new Sequelize(config.url, options)
+  : new Sequelize(
+      config.database,
+      config.username,
+      config.password ?? '',
+      options
+    );
 
 export { Sequelize, sequelize };
 
