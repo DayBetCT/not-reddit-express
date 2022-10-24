@@ -1,6 +1,6 @@
-import { env } from './config';
+import { env } from '@config';
 import { app } from './app';
-import { sequelize } from './database';
+import { sequelize } from '@models';
 
 const start = async (port: string | number) => {
   try {
@@ -9,7 +9,7 @@ const start = async (port: string | number) => {
     });
 
     await sequelize.authenticate();
-    console.log(`Connected to DB post ${env.DB_PORT}`);
+    console.log(`Connected to DB port ${env.DB_PORT}`);
   } catch (error) {
     console.error(error);
     process.exit();

@@ -4,7 +4,7 @@ import {
   showPost,
   storePost,
   updatePost,
-} from '../controllers/post.controller';
+} from '@controllers';
 import { Request, Response, Router } from 'express';
 
 export const PostRoute = () => {

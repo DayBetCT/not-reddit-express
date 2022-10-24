@@ -1,6 +1,6 @@
 import { env } from './index';
 
-export default {
+export const sequelizeConfig = {
   development: {
     username: env.DB_USER,
     password: env.DB_PASSWORD,
