@@ -1,5 +1,5 @@
+import { sequelizeConfig } from '@config/sequelizeConfig';
 import { Dialect, Sequelize } from 'sequelize';
-import { sequelizeConfig } from '@config';
 
 type EligibleEnv = keyof typeof sequelizeConfig;
 
