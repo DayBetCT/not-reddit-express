@@ -14,6 +14,8 @@ export const pool = new Pool({
 export const app = (): Application => {
   const app = express();
 
+  app.use(express.json());
+
   app.use('/posts', PostRoute());
 
   return app;
