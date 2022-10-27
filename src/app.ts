@@ -2,6 +2,7 @@ import express, { Application } from 'express';
 import { Pool } from 'pg';
 import { env } from '@config/baseConfig';
 import { PostRoute } from '@routes/post.route';
+import helmet from 'helmet';
 
 export const pool = new Pool({
   user: env.DB_USER,
@@ -15,6 +16,7 @@ export const app = (): Application => {
   const app = express();
 
   app.use(express.json());
+  app.use(helmet());
 
   app.use('/posts', PostRoute());
 
