@@ -8,8 +8,14 @@
     "overrides": [
     ],
     "parserOptions": {
+        // "project": ["**/tsconfig.json"],
         "ecmaVersion": "latest"
     },
     "rules": {
+        "no-console": ["warn", { "allow": ["error", "warn"] }],
+        "@typescript-eslint/no-unused-expressions": ["error"],
+        "@typescript-eslint/no-shadow": "warn",
+        "@typescript-eslint/prefer-optional-chain": ["warn"],
+        "@typescript-eslint/no-unnecessary-condition": "error"
     }
 }

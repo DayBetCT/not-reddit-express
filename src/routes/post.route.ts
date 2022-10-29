@@ -5,7 +5,12 @@ import {
   storePost,
   updatePost,
 } from '@controllers/post.controller';
+import { joi } from '@utils/joi';
 import { Request, Response, Router } from 'express';
+
+const schema = joi.object({
+  text: joi.string().alphanum().required(),
+});
 
 export const PostRoute = () => {
   return [
@@ -18,7 +23,13 @@ export const PostRoute = () => {
     }),
 
     Router().post('/', async (request: Request, response: Response) => {
-      await storePost(request, response);
+      const validated = schema.validate(request.body);
+
+      if (!validated.error) {
+        return await storePost(request, response);
+      }
+
+      response.status(422).json({ message: validated.error?.details });
     }),
 
     Router().put('/:postId', async (request: Request, response: Response) => {
