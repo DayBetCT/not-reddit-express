@@ -8,8 +8,12 @@ import {
 import { joi } from '@utils/joi';
 import { Request, Response, Router } from 'express';
 
-const schema = joi.object({
-  text: joi.string().alphanum().required(),
+const postSchema = joi.object({
+  text: joi.string().required(),
+});
+
+const putSchema = joi.object({
+  text: joi.string().allow('').optional(),
 });
 
 export const PostRoute = () => {
@@ -23,7 +27,7 @@ export const PostRoute = () => {
     }),
 
     Router().post('/', async (request: Request, response: Response) => {
-      const validated = schema.validate(request.body);
+      const validated = postSchema.validate(request.body);
 
       if (!validated.error) {
         return await storePost(request, response);
@@ -33,7 +37,13 @@ export const PostRoute = () => {
     }),
 
     Router().put('/:postId', async (request: Request, response: Response) => {
-      await updatePost(request, response);
+      const validated = putSchema.validate(request.body);
+
+      if (!validated.error) {
+        return await updatePost(request, response);
+      }
+
+      response.status(422).json({ message: validated.error?.details });
     }),
 
     Router().delete(
