@@ -1,7 +1,7 @@
-import { config } from 'dotenv';
-import { cleanEnv, num, port, str } from 'envalid';
+import { config } from "dotenv";
+import { cleanEnv, num, port, str } from "envalid";
 
-config({ path: '.env.dev' });
+config({ path: ".env.dev" });
 
 export const env = cleanEnv(process.env, {
   PORT: port(),
