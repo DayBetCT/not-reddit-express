@@ -13,12 +13,12 @@ export const pool = new Pool({
 });
 
 export const app = (): Application => {
-  const app = express();
+  const expressApp = express();
 
-  app.use(express.json());
-  app.use(helmet());
+  expressApp.use(express.json());
+  expressApp.use(helmet());
 
-  app.use("/posts", PostRoute());
+  expressApp.use("/posts", PostRoute());
 
-  return app;
+  return expressApp;
 };
