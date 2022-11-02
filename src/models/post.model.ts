@@ -1,8 +1,8 @@
-import { sequelize } from '@models/squelize.init';
-import { DATE, STRING, NUMBER } from 'sequelize';
+import { sequelize } from "@models/squelize.init";
+import { STRING, NUMBER } from "sequelize";
 
 export const Post = sequelize.define(
-  'Post',
+  "Post",
   {
     id: {
       type: NUMBER,
@@ -16,6 +16,6 @@ export const Post = sequelize.define(
     },
   },
   {
-    tableName: 'posts',
+    tableName: "posts",
   }
 );

@@ -1,8 +1,8 @@
-import { app } from './app';
-import { env } from '@config/baseConfig';
-import { sequelize } from '@models/squelize.init';
+import { app } from "./app";
+import { env } from "@config/baseConfig";
+import { sequelize } from "@models/squelize.init";
 
-const start = async (port: string | number) => {
+const start = async (port: string | number): Promise<void> => {
   try {
     app().listen(port, () => {
       console.log(`Server listening to ${port}`);
@@ -16,8 +16,8 @@ const start = async (port: string | number) => {
   }
 };
 
-if (env.PORT) {
-  start(env.PORT);
+if (env.PORT !== 0) {
+  void start(env.PORT);
 } else {
-  console.error('PORT not found');
+  console.error("PORT not found");
 }

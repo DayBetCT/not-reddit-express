@@ -1,8 +1,8 @@
-import express, { Application } from 'express';
-import { Pool } from 'pg';
-import { env } from '@config/baseConfig';
-import { PostRoute } from '@routes/post.route';
-import helmet from 'helmet';
+import express, { Application } from "express";
+import { Pool } from "pg";
+import { env } from "@config/baseConfig";
+import { PostRoute } from "@routes/post.route";
+import helmet from "helmet";
 
 export const pool = new Pool({
   user: env.DB_USER,
@@ -13,12 +13,12 @@ export const pool = new Pool({
 });
 
 export const app = (): Application => {
-  const app = express();
+  const expressApp = express();
 
-  app.use(express.json());
-  app.use(helmet());
+  expressApp.use(express.json());
+  expressApp.use(helmet());
 
-  app.use('/posts', PostRoute());
+  expressApp.use("/posts", PostRoute());
 
-  return app;
+  return expressApp;
 };

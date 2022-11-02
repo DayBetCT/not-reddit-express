@@ -4,11 +4,17 @@
         "commonjs": true,
         "es2021": true
     },
-    "extends": "standard-with-typescript",
+    "extends": [
+        "standard-with-typescript",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+    ],
+    "plugins": ["@typescript-eslint", "prettier"],
     "overrides": [
     ],
     "parserOptions": {
-        // "project": ["**/tsconfig.json"],
+        "project": ["**/tsconfig.json"],
         "ecmaVersion": "latest"
     },
     "rules": {
@@ -16,6 +22,7 @@
         "@typescript-eslint/no-unused-expressions": ["error"],
         "@typescript-eslint/no-shadow": "warn",
         "@typescript-eslint/prefer-optional-chain": ["warn"],
-        "@typescript-eslint/no-unnecessary-condition": "error"
+        "@typescript-eslint/no-unnecessary-condition": "error",
+        "prettier/prettier": ["error"]
     }
 }
