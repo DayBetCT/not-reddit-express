@@ -7,12 +7,13 @@
     "dev": "npx concurrently \"npx tsc --watch\" \"tsc-alias\" \"npx nodemon -q -r tsconfig-paths/register ./src/server.ts\"",
     "start": "node ./dist/server.js",
     "build": "tsc && tsc-alias",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cross-env NODE_ENV=test jest --testTimeout=5000"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "envalid": "^7.3.1",
     "express": "^4.18.2",
