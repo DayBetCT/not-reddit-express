@@ -1,4 +1,4 @@
-import { app } from "./app";
+import { app } from "@src/app";
 import { env } from "@config/baseConfig";
 import { sequelize } from "@models/squelize.init";
 

@@ -7,7 +7,7 @@
     "dev": "npx concurrently \"npx tsc --watch\" \"tsc-alias\" \"npx nodemon -q -r tsconfig-paths/register ./src/server.ts\"",
     "start": "node ./dist/server.js",
     "build": "tsc && tsc-alias",
-    "test": "cross-env NODE_ENV=test jest --testTimeout=5000"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
