@@ -18,8 +18,6 @@ export const showPost = async (
 ): Promise<Response> => {
   const post = await Post.findByPk(request.params.postId);
 
-  console.log(post?.get());
-
   if (post?.get() === undefined) {
     return response.status(404).json({ message: "post does not exist" });
   }
