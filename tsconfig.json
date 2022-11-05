@@ -34,7 +34,8 @@
       "@models/*": ["models/*"],
       "@routes/*": ["routes/*"],
       "@controllers/*": ["controllers/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@src/*": ["*"],
     },
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
