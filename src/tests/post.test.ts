@@ -1,6 +1,7 @@
 import { Post } from "@models/post.model";
 import { app } from "@src/app";
 import supertest from "supertest";
+import { faker } from "@faker-js/faker";
 
 describe("get posts", () => {
   it("should list all posts", async () => {
@@ -23,7 +24,7 @@ describe("get posts", () => {
 
 describe("manage posts", () => {
   it("should create a post", async () => {
-    const text = "booom";
+    const text = faker.lorem.sentence(5);
 
     await supertest(app())
       .post("/posts")
@@ -34,6 +35,6 @@ describe("manage posts", () => {
     const post = await Post.findOne({ where: { text } });
 
     expect(post).not.toBeNull();
-    expect(post?.get).toHaveProperty("text", text);
+    expect(post?.get()).toHaveProperty("text", text);
   });
 });
